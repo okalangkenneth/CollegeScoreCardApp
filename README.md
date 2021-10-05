@@ -10,8 +10,7 @@ Live demo [_here_](https://www.example.com). <!-- If you have the project hosted
 
 
 ## General Information
- CollegeScoreCardApp allows users of the application to see various schools in their area using a 3rd party API, the college scoreboard API, in Blazor server using 
- HttpClient in .NET Core.
+ CollegeScoreCardApp allows users of the application to see various schools in their area using a 3rd party API, the college scoreboard API.
  
 ## Technologies Used
 - Visual Studio - 2019
