@@ -10,7 +10,8 @@ Live demo [_here_](https://www.example.com). <!-- If you have the project hosted
 
 
 ## General Information
- CollegeScoreCardApp allows users of the application to see various schools in their area using a 3rd party API, the college scoreboard API.
+ CollegeScoreCardApp allows users of the application to see various schools in their area using a 3rd party API, the college scoreboard API
+ found at [data.gov](https://catalog.data.gov/dataset/college-scorecard).
  
 ## Technologies Used
 - Visual Studio - 2019
