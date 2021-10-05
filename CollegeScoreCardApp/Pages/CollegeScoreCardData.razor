@@ -1,0 +1,65 @@
+﻿@page "/collegeScoreCard"
+
+@inject IHttpClientFactory _clientFactory
+
+<h3>CollegeScoreCardData</h3>
+
+@if(string.IsNullOrWhiteSpace(errorString)== false)
+ {
+    <div class="h2">@errorString</div>
+ }
+ else if (collegeInformation is null)
+ {
+    <div class="h4">Loading...</div>
+ }
+ else
+ {
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Latest Student Size</th>
+                <th>School Name</th>
+                <th>School State</th>
+            </tr>
+        </thead>
+       </table>
+ }
+
+@code {  
+
+    CollegeInformationModel collegeInformation;
+    string errorString;
+    protected override async Task OnInitializedAsync()
+    {
+        ////create a response message
+        //var request = new HttpRequestMessage(HttpMethod.Get,
+        //    "https://api.data.gov/ed/collegescorecard/v1/schools.json?school.degrees_awarded.predominant=2,3&fields=id,school.state,school.name,latest.student.size&api_key=MEUEaFeQDWL70T71VJKQy2bvwu03QcSEyiLhLlCj");
+
+        //var client = _clientFactory.CreateClient(); // create httpclient
+        //HttpResponseMessage response = await client.SendAsync(request);
+
+        //if (response.IsSuccessStatusCode)
+        //{
+        //    collegeInformation = await response.Content.ReadFromJsonAsync<CollegeInformationModel>();
+        //    errorString = null;
+        //}
+        //else
+        //{
+        //    errorString = $"There was an error getting our college information: {response.ReasonPhrase}";
+
+        //}
+
+        var client = _clientFactory.CreateClient("meta");
+
+        try
+        {
+            collegeInformation = await client.GetFromJsonAsync<CollegeInformationModel>("schools.json?school.degrees_awarded.predominant=2,3&fields=id,school.name,school.state,latest.student.size&api_key=MEUEaFeQDWL70T71VJKQy2bvwu03QcSEyiLhLlCj");
+            errorString = null;
+        }   
+        catch (Exception ex)
+            {
+                errorString = $"There was an error getting our college information: {ex.Message}";
+            }
+    }
+
+}
